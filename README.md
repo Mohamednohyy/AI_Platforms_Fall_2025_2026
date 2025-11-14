@@ -1,69 +1,76 @@
-# Assignment 3: Fashion MNIST Classification
+# Fashion MNIST CNN Models
 
-This project implements a Neural Network using TensorFlow Keras to perform classification on the Fashion MNIST dataset.
+This project contains CNN (Convolutional Neural Network) implementations for the Fashion MNIST dataset using both Keras and PyTorch.
 
 ## Dataset
 
 Fashion MNIST is a dataset of Zalando's article images consisting of:
-- **60,000 training images** and **10,000 test images**
-- **10 classes**: T-shirt/top, Trouser, Pullover, Dress, Coat, Sandal, Shirt, Sneaker, Bag, Ankle boot
-- Each image is a **28x28 grayscale image**
+- 60,000 training examples
+- 10,000 test examples
+- 10 classes: T-shirt/top, Trouser, Pullover, Dress, Coat, Sandal, Shirt, Sneaker, Bag, Ankle boot
+- 28x28 grayscale images
 
-## Model Architecture
+## Requirements
 
-The neural network consists of:
-- **Input Layer**: Flattened 28×28 images (784 neurons)
-- **Hidden Layer 1**: 128 neurons with ReLU activation + Dropout (0.2)
-- **Hidden Layer 2**: 64 neurons with ReLU activation + Dropout (0.2)
-- **Output Layer**: 10 neurons with Softmax activation (one for each class)
+Install the required packages:
 
-## Features
-
-- Data preprocessing and normalization
-- Neural network model with dropout regularization
-- Model training with validation
-- Performance evaluation
-- Visualization of training history
-- Sample prediction visualization
-
-## Installation
-
-1. Install required packages:
 ```bash
 pip install -r requirements.txt
 ```
 
 ## Usage
 
-Run the main script:
+### Keras Implementation
+
+Run the Keras CNN model:
+
 ```bash
-python fashion_mnist_classifier.py
+python fashion_mnist_keras.py
 ```
 
-The script will:
-1. Load and preprocess the Fashion MNIST dataset
-2. Build and compile the neural network
-3. Train the model for 10 epochs
-4. Evaluate on test data
-5. Generate visualization plots
-6. Save the trained model
+This will:
+- Load and preprocess the Fashion MNIST dataset
+- Build a CNN model with 3 convolutional layers
+- Train the model for 10 epochs
+- Evaluate on the test set
+- Save the model as `fashion_mnist_keras_model.h5`
+- Generate training history plots
 
-## Output Files
+### PyTorch Implementation
 
-- `fashion_mnist_model.h5`: Saved trained model
-- `training_history.png`: Training loss and accuracy curves
-- `sample_predictions.png`: Visualization of sample predictions
+Run the PyTorch CNN model:
 
-## Expected Performance
+```bash
+python fashion_mnist_pytorch.py
+```
 
-With the default configuration, the model typically achieves:
-- **Test Accuracy**: ~87-89%
+This will:
+- Load and preprocess the Fashion MNIST dataset
+- Build a CNN model with 3 convolutional layers
+- Train the model for 10 epochs
+- Evaluate on the test set
+- Save the model as `fashion_mnist_pytorch_model.pth`
+- Generate training history plots
 
-## Model Parameters
+## Model Architecture
 
-- **Optimizer**: Adam
-- **Loss Function**: Categorical Crossentropy
-- **Batch Size**: 32
-- **Epochs**: 10
-- **Regularization**: Dropout (0.2)
+Both implementations use a similar CNN architecture:
+
+1. **Conv2D Layer 1**: 32 filters, 3x3 kernel, ReLU activation
+2. **MaxPooling2D**: 2x2 pool size
+3. **Conv2D Layer 2**: 64 filters, 3x3 kernel, ReLU activation
+4. **MaxPooling2D**: 2x2 pool size
+5. **Conv2D Layer 3**: 64 filters, 3x3 kernel, ReLU activation
+6. **Flatten Layer**
+7. **Dense Layer**: 64 units, ReLU activation
+8. **Dropout**: 0.5 rate
+9. **Output Layer**: 10 units (one for each class), Softmax activation
+
+## Expected Results
+
+Both models should achieve approximately:
+- **Training Accuracy**: ~90-95%
+- **Test Accuracy**: ~88-92%
+
+Note: Results may vary slightly due to random initialization and training dynamics.
 
